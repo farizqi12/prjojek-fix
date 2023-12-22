@@ -1,14 +1,20 @@
+function add() {
+  // mengambil nilai dari ul dengan ID todo dan 
+  // di masukkan kedalam variabel const todo
+  const todo = document.getElementById("todo");
+  //mengambil nilai dari text-box
+  let newText = document.getElementById("new-text");
 
-function add(){
-    const todo = document.getElementById('todo')
-    //mengambil nilai dari text-box
-    let newText = document.getElementById('new-text');
-    //menambah list kedalam ul
-    // let li = document.createElement('li');
-    // let txt = document.createTextNode(newText.value); 
+  // menambah list kedalam ul
+  let newtodo = "<li> <span>" + newText.value + "</span>" +
+  "<span> [x] </span>" + 
+  "</li>";
 
-    // li.appendChild(txt);
-    // todo.appendChild(li)
+  
+  // insertAdjacentHTML sebuah metode penempatan HTML ke dalam elemen HTML
+  // "afterbegin" parameter yang digunakan untuk menambahkan list pada urutan paling atas
+  todo.insertAdjacentHTML('afterbegin', newtodo)
 
-    let newtodo = "<li> <span>" + newText.value + "</span></li>"
+//   mengosongkan box
+  newText.value = ""
 }
