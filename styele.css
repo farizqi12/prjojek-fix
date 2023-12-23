@@ -17,6 +17,12 @@ body {
     height: 30px;
 }
 
+.nav>ul > li {
+ display: inline-block;
+ margin-right: 50px;
+ font-weight: bold;
+}
+
 .nav>ul>li>a {
     display: inline-block;
     text-decoration: none;
@@ -66,3 +72,6 @@ footer{
     border-bottom-right-radius: 25px
 }
 
+.done{
+    text-decoration: line-through;
+}
