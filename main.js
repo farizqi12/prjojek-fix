@@ -1,17 +1,25 @@
-
 var dt = new Date();
 document.getElementById("waktu").innerHTML = dt.toLocaleDateString();
 
 function toggle(el) {
   el.classList.toggle("done");
 }
-function remove(el) {
-  
-  el.parentElement.remove();
 
+function remove(el) {
+  const taskElement = el.parentElement;
+  const deadlineAttribute = taskElement.getAttribute("data-deadline");
+
+  // Remove the task from the tasks array
+  tasks = tasks.filter(task => task.deadline !== deadlineAttribute);
+
+  // Update the UI with the modified tasks array
   const sortedTasks = bubbleSort(tasks);
   updateUI(sortedTasks);
+
+  // Remove the task element from the DOM
+  taskElement.remove();
 }
+
 var tasks = [];
 
 function bubbleSort(tasks) {
@@ -30,7 +38,6 @@ function bubbleSort(tasks) {
       const monthB = dateB.getMonth();
       const dayB = dateB.getDate();
 
-      
       if (yearA > yearB || (yearA === yearB && (monthA > monthB || (monthA === monthB && dayA > dayB)))) {
         const temp = tasks[j];
         tasks[j] = tasks[j + 1];
@@ -43,21 +50,25 @@ function bubbleSort(tasks) {
 }
 
 function add() {
-  
   const todo = document.getElementById("todo");
-  
   let newText = document.getElementById("new-text");
   let newDeadline = document.getElementById("deadline").value;
+
+  // Validasi: Pastikan teks dan tanggal diisi sebelum menambahkan tugas baru
+  if (newText.value.trim() === "" || newDeadline.trim() === "") {
+    alert("Harap isi teks dan tanggal dengan benar!");
+    return;
+  }
 
   tasks.push({ title: newText.value, deadline: newDeadline });
 
   const sortedTasks = bubbleSort(tasks);
   updateUI(sortedTasks);
 
-  
   newText.value = "";
   document.getElementById("deadline").value = "";
 }
+
 
 function updateUI(sortedTasks) {
   const todo = document.getElementById("todo");
@@ -74,8 +85,4 @@ function updateUI(sortedTasks) {
 
 function toggle(el) {
   el.classList.toggle("done");
-}
-
-function remove(el) {
-  el.parentElement.remove();
 }
