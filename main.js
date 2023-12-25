@@ -86,3 +86,4 @@ function updateUI(sortedTasks) {
 function toggle(el) {
   el.classList.toggle("done");
 }
+
